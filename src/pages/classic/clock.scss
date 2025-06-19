@@ -1,0 +1,35 @@
+@import '../../styles/buttons.scss';
+
+.clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+    background: transparent;
+  }
+
+  &-button-back {
+    @include round-button('transparent', rgb(98, 98, 98));
+    text-decoration: none;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .time {
+    font-size: 10rem;
+    font-weight: bold;
+    color: white;
+    font-family: monospace;
+  }
+}

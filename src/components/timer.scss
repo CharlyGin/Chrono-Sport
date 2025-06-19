@@ -1,0 +1,298 @@
+@import '../styles/buttons.scss';
+
+@mixin timer-button($color) {
+  border: 1px solid white;
+  border-radius: 0.5rem;
+
+  background-color: transparent;
+  color: white;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $color;
+    border-color: $color;
+  }
+}
+
+$green: rgb(50, 207, 50);
+$red: rgb(255, 87, 87);
+
+input[type='text'] {
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding-right: 2.5rem;
+  text-align: left;
+  font-size: inherit;
+}
+
+input[type='color'] {
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: inherit;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  cursor: pointer;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.timer {
+  &-display {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    &-info {
+      min-height: 283px;
+      min-width: 30px;
+      font-size: 3rem;
+
+      flex-grow: 3;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+    }
+
+    &-time {
+      font-size: 10rem;
+      font-weight: bold;
+      color: white;
+
+      flex-grow: 3;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      flex-grow: 2.5;
+
+      gap: 2rem;
+
+      .timer-button-start {
+        @extend .round-button-green;
+      }
+
+      .timer-button-stop {
+        @extend .round-button-red;
+      }
+
+      .timer-button-reset {
+        @extend .round-button-yellow;
+      }
+    }
+  }
+
+  &-settings {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    .timer-name {
+      flex-grow: 1;
+
+      font-size: 3rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-details {
+      flex-grow: 8;
+
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .timer-rounds {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .timer-begin,
+      .timer-end,
+      .timer-round {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
+
+        margin-bottom: 0.2rem;
+        margin-top: 1rem;
+        margin-left: 3rem;
+        margin-right: 3rem;
+
+        padding: 0.5rem;
+
+        border: 1px solid white;
+        border-radius: 0.5rem;
+
+        .input-wrapper {
+          position: relative;
+          display: inline-block;
+          font-size: 1rem;
+
+          input {
+            color: white;
+            background-color: transparent;
+            border: none;
+            padding-right: 2.5rem;
+            text-align: center;
+            font-size: inherit;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          .suffix {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            pointer-events: none;
+            font-size: inherit;
+          }
+        }
+      }
+
+      .timer-round {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .timer-round-pre,
+        .timer-round-post {
+          width: 100%;
+
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .timer-round-name {
+          width: 100%;
+
+          margin-bottom: 0.5rem;
+
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .timer-round-chronos {
+          width: 100%;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          .timer-round-chrono {
+            width: 100%;
+
+            margin-bottom: 0.2rem;
+            margin-top: 0.2rem;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+
+  &-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+    background: transparent;
+  }
+
+  &-button-back {
+    @include round-button('transparent', rgb(98, 98, 98));
+    text-decoration: none;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.timer-name {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.timer-button-add {
+  @include timer-button($green);
+
+  width: 50%;
+}
+
+.timer-button-remove {
+  @include timer-button($red);
+
+  width: 1.5rem;
+  height: 1.5rem;
+}
