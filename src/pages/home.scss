@@ -25,6 +25,7 @@
 
       margin: 1rem;
       font-size: 2rem;
+      @extend %fade-in-up;
     }
 
     &-item-list {
@@ -49,6 +50,7 @@
         text-decoration: none;
 
         border: solid 2px white;
+        @extend %fade-in-up;
 
         &:hover {
           background-color: white;
@@ -57,4 +59,21 @@
       }
     }
   }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+%fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
 }
