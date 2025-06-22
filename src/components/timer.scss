@@ -296,3 +296,19 @@ input[type='color'] {
   width: 1.5rem;
   height: 1.5rem;
 }
+
+.group-item {
+  transition: all 0.5s;
+}
+
+.group-item-enter,
+.group-item-exit-to {
+  opacity: 0;
+}
+
+.group-item-enter-active,
+.group-item-exit-active {
+  transition:
+    transform 0.4s,
+    opacity 0.4s;
+}

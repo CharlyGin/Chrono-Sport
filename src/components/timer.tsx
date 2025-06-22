@@ -5,6 +5,7 @@ import { createStore, produce } from 'solid-js/store';
 import { A } from '@solidjs/router';
 import { Execution, ExecutionVisitor } from '../utils/visitor/execution_visitor';
 import { Queue } from '../utils/queue';
+import { TransitionGroup } from 'solid-transition-group';
 
 function Chrono(props: { chrono: ChronoType; destruct: () => void; update: (c) => void }) {
   return (
@@ -32,6 +33,7 @@ function Chrono(props: { chrono: ChronoType; destruct: () => void; update: (c) =
             name="chrono-time"
             value={props.chrono.time}
             onChange={e => props.update({ time: parseInt(e.target.value) })}
+            min="0"
           />
           <span class="suffix">sec</span>
         </div>
@@ -84,6 +86,7 @@ function Round(props: {
             name="round-time"
             value={props.round.repeat}
             onChange={e => props.update({ repeat: parseInt(e.target.value) })}
+            min="0"
           />
           <span class="suffix">times</span>
         </div>
@@ -99,20 +102,23 @@ function Round(props: {
             name="round-pre"
             value={props.round.pre}
             onChange={e => props.update({ pre: parseInt(e.target.value) })}
+            min="0"
           />
           <span class="suffix">sec</span>
         </div>
       </div>
       <div class="timer-round-chronos">
-        <For each={chronos}>
-          {(chrono, index) => (
-            <Chrono
-              chrono={chrono}
-              destruct={() => deleteChrono(index)}
-              update={updateChrono(index)}
-            />
-          )}
-        </For>
+        <TransitionGroup name="group-item">
+          <For each={chronos}>
+            {(chrono, index) => (
+              <Chrono
+                chrono={chrono}
+                destruct={() => deleteChrono(index)}
+                update={updateChrono(index)}
+              />
+            )}
+          </For>
+        </TransitionGroup>
         <button class="timer-button-add" onClick={() => addChrono()}>
           +
         </button>
@@ -120,7 +126,7 @@ function Round(props: {
       <div class="timer-round-post">
         <label for="round-post">Post</label>
         <div class="input-wrapper">
-          <input type="number" name="round-post" value={props.round.post} />
+          <input type="number" name="round-post" value={props.round.post} min="0" />
           <span class="suffix">sec</span>
         </div>
       </div>
@@ -303,6 +309,7 @@ export default function Timer(props: { timer: TimerType }) {
                 name="begin"
                 value={timer.begin}
                 onChange={e => setTimer('begin', parseInt(e.target.value))}
+                min="0"
               />
               <span class="suffix">sec</span>
             </div>
@@ -330,6 +337,7 @@ export default function Timer(props: { timer: TimerType }) {
                 name="end"
                 value={timer.end}
                 onChange={e => setTimer('end', parseInt(e.target.value))}
+                min="0"
               />
               <span class="suffix">sec</span>
             </div>
