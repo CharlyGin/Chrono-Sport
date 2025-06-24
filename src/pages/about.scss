@@ -1,0 +1,122 @@
+.about {
+  margin: 2rem;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &-title {
+      font-size: 2rem;
+      text-decoration: underline;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      .paragraph {
+        display: flex;
+        justify-content: center;
+
+        flex: row;
+
+        width: 80%;
+
+        gap: 20px;
+
+        .image {
+          img {
+            max-width: 400px;
+            max-height: 500px;
+          }
+        }
+
+        .text {
+          align-self: center;
+        }
+      }
+    }
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+
+  gap: 3rem;
+
+  .left-pan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      font-size: 1.5rem;
+    }
+
+    li.github,
+    li.discord {
+      display: flex;
+      align-items: center;
+      min-height: 2rem;
+      margin-bottom: 1rem;
+      padding-left: 2.2rem;
+      background-repeat: no-repeat;
+      background-size: 1.5rem 1.5rem;
+      background-position: left center;
+      transition: transform 0.2s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    li.github:hover,
+    li.discord:hover {
+      transform: scale(1.08);
+      z-index: 1;
+    }
+
+    li.github {
+      background-image: url('/images/github.png');
+    }
+
+    li.discord {
+      background-image: url('/images/discord.png');
+    }
+  }
+
+  .right-pan {
+    img {
+      width: 18rem;
+      border-radius: 50%;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+.caption {
+  text-align: center;
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
