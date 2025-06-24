@@ -1,6 +1,27 @@
+import { onMount } from 'solid-js';
 import './about.scss';
 
 export default function About() {
+  onMount(() => {
+    const sections = document.querySelectorAll('.about-section');
+    const observer = new window.IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            entry.target.classList.remove('disappear');
+          } else {
+            entry.target.classList.remove('visible');
+            entry.target.classList.add('disappear');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    sections.forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  });
+
   return (
     <div class="about">
       <div class="about-section">
