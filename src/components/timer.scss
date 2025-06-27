@@ -1,4 +1,5 @@
 @import '../styles/buttons.scss';
+@import '../styles/responsive.scss';
 
 @mixin timer-button($color) {
   border: 1px solid white;
@@ -25,7 +26,6 @@ input[type='text'] {
   color: white;
   background-color: transparent;
   border: none;
-  padding-right: 2.5rem;
   text-align: left;
   font-size: inherit;
 }
@@ -55,6 +55,12 @@ input[type='color'] {
   }
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .timer {
   &-display {
     width: 100vw;
@@ -66,11 +72,13 @@ input[type='color'] {
     justify-content: space-evenly;
 
     &-info {
-      min-height: 283px;
-      min-width: 30px;
-      font-size: 3rem;
+      font-size: 8vw;
 
-      flex-grow: 3;
+      @media screen and (orientation: landscape) {
+        font-size: 8vh;
+      }
+
+      height: 33vh;
 
       display: flex;
       flex-direction: column;
@@ -81,11 +89,11 @@ input[type='color'] {
     }
 
     &-time {
-      font-size: 10rem;
+      font-size: 15vw;
       font-weight: bold;
       color: white;
 
-      flex-grow: 3;
+      height: 33vh;
 
       display: flex;
       flex-direction: column;
@@ -99,7 +107,7 @@ input[type='color'] {
       align-items: center;
       justify-content: center;
 
-      flex-grow: 2.5;
+      height: 33vh;
 
       gap: 2rem;
 
@@ -163,12 +171,17 @@ input[type='color'] {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 50%;
+
+        width: 75vw;
+
+        @include desktop {
+          width: 50%;
+        }
 
         margin-bottom: 0.2rem;
         margin-top: 1rem;
-        margin-left: 3rem;
-        margin-right: 3rem;
+        margin-left: 3vw;
+        margin-right: 3vw;
 
         padding: 0.5rem;
 
@@ -176,31 +189,21 @@ input[type='color'] {
         border-radius: 0.5rem;
 
         .input-wrapper {
-          position: relative;
-          display: inline-block;
-          font-size: 1rem;
+          display: flex;
+          flex-direction: row;
+
+          gap: 1ch;
 
           input {
             color: white;
             background-color: transparent;
             border: none;
-            padding-right: 2.5rem;
-            text-align: center;
+            text-align: end;
             font-size: inherit;
 
             &:focus {
               outline: none;
             }
-          }
-
-          .suffix {
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            pointer-events: none;
-            font-size: inherit;
           }
         }
       }
@@ -221,6 +224,11 @@ input[type='color'] {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+
+          @include desktop {
+            justify-content: center;
+            gap: 2rem;
+          }
         }
 
         .timer-round-name {
@@ -252,6 +260,22 @@ input[type='color'] {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+
+            .wrapper {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+
+              @include desktop {
+                margin: 0 5rem;
+              }
+
+              flex-grow: 2;
+
+              margin-left: 0.5rem;
+              margin-right: 0.5rem;
+            }
           }
         }
       }

@@ -6,6 +6,7 @@ import { A } from '@solidjs/router';
 import { Execution, ExecutionVisitor } from '../utils/visitor/execution_visitor';
 import { Queue } from '../utils/queue';
 import { TransitionGroup } from 'solid-transition-group';
+import { AutoResizableInput } from './auto-resizable-input';
 
 function Chrono(props: { chrono: ChronoType; destruct: () => void; update: (c) => void }) {
   return (
@@ -18,24 +19,23 @@ function Chrono(props: { chrono: ChronoType; destruct: () => void; update: (c) =
           onChange={e => props.update({ color: parseInt(e.target.value.slice(1), 16) })}
         />
       </div>
-      <div class="timer-round-chrono-name">
-        <input
-          type="text"
-          name="chrono-name"
-          value={props.chrono.name}
-          onChange={e => props.update({ name: e.target.value })}
-        />
-      </div>
-      <div class="timer-round-chrono-time">
-        <div class="input-wrapper">
-          <input
-            type="number"
-            name="chrono-time"
-            value={props.chrono.time}
+      <div class="wrapper">
+        <div class="timer-round-chrono-name">
+          <AutoResizableInput
+            input_type="text"
+            default={props.chrono.name}
+            onChange={e => props.update({ name: e.target.value })}
+          />
+        </div>
+        <div class="timer-round-chrono-time">
+          <AutoResizableInput
+            input_type="number"
+            default={props.chrono.time.toString()}
             onChange={e => props.update({ time: parseInt(e.target.value) })}
+            suffix="sec"
+            max="999999"
             min="0"
           />
-          <span class="suffix">sec</span>
         </div>
       </div>
       <button class="timer-button-remove" onClick={props.destruct}>
@@ -74,38 +74,33 @@ function Round(props: {
   return (
     <div class="timer-round">
       <div class="timer-round-name">
-        <input
-          type="text"
-          name="round-name"
-          value={props.round.name}
+        <AutoResizableInput
+          input_type="text"
+          default={props.round.name}
           onChange={e => props.update({ name: e.target.value })}
         />
-        <div class="input-wrapper">
-          <input
-            type="number"
-            name="round-time"
-            value={props.round.repeat}
-            onChange={e => props.update({ repeat: parseInt(e.target.value) })}
-            min="0"
-          />
-          <span class="suffix">times</span>
-        </div>
+        <AutoResizableInput
+          input_type="number"
+          default={props.round.repeat.toString()}
+          onChange={e => props.update({ repeat: parseInt(e.target.value) })}
+          suffix="times"
+          max="999999"
+          min="0"
+        />
         <button class="timer-button-remove" onClick={props.destruct}>
           X
         </button>
       </div>
       <div class="timer-round-pre">
         <label for="round-pre">Pre</label>
-        <div class="input-wrapper">
-          <input
-            type="number"
-            name="round-pre"
-            value={props.round.pre}
-            onChange={e => props.update({ pre: parseInt(e.target.value) })}
-            min="0"
-          />
-          <span class="suffix">sec</span>
-        </div>
+        <AutoResizableInput
+          input_type="number"
+          default={props.round.pre.toString()}
+          onChange={e => props.update({ pre: parseInt(e.target.value) })}
+          suffix="sec"
+          max="999999"
+          min="0"
+        />
       </div>
       <div class="timer-round-chronos">
         <TransitionGroup name="group-item">
@@ -125,10 +120,14 @@ function Round(props: {
       </div>
       <div class="timer-round-post">
         <label for="round-post">Post</label>
-        <div class="input-wrapper">
-          <input type="number" name="round-post" value={props.round.post} min="0" />
-          <span class="suffix">sec</span>
-        </div>
+        <AutoResizableInput
+          input_type="number"
+          default={props.round.post.toString()}
+          onChange={e => props.update({ post: parseInt(e.target.value) })}
+          suffix="sec"
+          max="999999"
+          min="0"
+        />
       </div>
     </div>
   );
@@ -303,16 +302,14 @@ export default function Timer(props: { timer: TimerType }) {
         <div class="timer-details">
           <div class="timer-begin">
             <label for="begin">Begin</label>
-            <div class="input-wrapper">
-              <input
-                type="number"
-                name="begin"
-                value={timer.begin}
-                onChange={e => setTimer('begin', parseInt(e.target.value))}
-                min="0"
-              />
-              <span class="suffix">sec</span>
-            </div>
+            <AutoResizableInput
+              input_type="number"
+              default={timer.begin.toString()}
+              onChange={e => setTimer('begin', parseInt(e.target.value))}
+              suffix="sec"
+              max="999999"
+              min="0"
+            />
           </div>
           <div class="timer-rounds">
             <For each={timer.rounds}>
@@ -331,16 +328,14 @@ export default function Timer(props: { timer: TimerType }) {
           </button>
           <div class="timer-end">
             <label for="end">End</label>
-            <div class="input-wrapper">
-              <input
-                type="number"
-                name="end"
-                value={timer.end}
-                onChange={e => setTimer('end', parseInt(e.target.value))}
-                min="0"
-              />
-              <span class="suffix">sec</span>
-            </div>
+            <AutoResizableInput
+              input_type="number"
+              default={timer.end.toString()}
+              onChange={e => setTimer('end', parseInt(e.target.value))}
+              suffix="sec"
+              max="999999"
+              min="0"
+            />
           </div>
         </div>
       </div>
