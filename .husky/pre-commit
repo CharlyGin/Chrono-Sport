@@ -1,0 +1,24 @@
+echo "  ____  _    _ _____ _      _____  "
+echo " |  _ \| |  | |_   _| |    |  __ \ "
+echo " | |_) | |  | | | | | |    | |  | |"
+echo " |  _ <| |  | | | | | |    | |  | |"
+echo " | |_) | |__| |_| |_| |____| |__| |"
+echo " |____/ \____/|_____|______|_____/ "
+
+echo "Running test build..."
+bun run build
+echo "Build completed successfully. ✅"
+
+
+echo "  _      _____ _   _ _______ ______ _____   "
+echo " | |    |_   _| \ | |__   __|  ____|  __ \  "
+echo " | |      | | |  \| |  | |  | |__  | |__) | "
+echo " | |      | | | . \` |  | |  |  __| |  _  /  "
+echo " | |____ _| |_| |\  |  | |  | |____| | \ \  "
+echo " |______|_____|_| \_|  |_|  |______|_|  \_\ "
+
+echo "Running lint check..."
+bun lint
+bun format:check
+bun type-check
+echo "Lint check completed successfully. ✅"
