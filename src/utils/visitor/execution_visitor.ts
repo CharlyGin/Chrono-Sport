@@ -1,4 +1,4 @@
-import { TimerType, RoundType, ChronoType } from '../../components/timer.data';
+import { ChronoType, RoundType, TimerType } from '../../components/timer.data';
 import { Queue } from '../queue';
 import { TimerVisitor } from './visitor';
 
@@ -55,7 +55,7 @@ export class ExecutionVisitor implements TimerVisitor {
       });
     }
 
-    for (let roundi = 1; roundi <= r.repeat; roundi++) {
+    for (let roundi = 1; roundi <= (r.repeat || 1); roundi++) {
       r.chronos.forEach((chrono: ChronoType) => {
         this._visitChrono(chrono, r, roundi);
       });
@@ -74,9 +74,9 @@ export class ExecutionVisitor implements TimerVisitor {
     this.execution_queue.enqueue({
       color: c.color,
       time: c.time,
-      round_name: r.name,
+      round_name: r ? r.name : undefined,
       roundi: ri,
-      round_repeat: r.repeat,
+      round_repeat: r ? r.repeat : undefined,
       chrono_name: c.name,
     });
   }

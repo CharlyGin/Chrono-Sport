@@ -1,6 +1,7 @@
+import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
 
-export default function Tabata() {
+export default function Tabata(): JSX.Element {
   return (
     <Timer
       timer={{

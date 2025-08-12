@@ -1,6 +1,7 @@
+import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
 
-export default function Beginner() {
+export default function Beginner(): JSX.Element {
   return (
     <Timer
       timer={{

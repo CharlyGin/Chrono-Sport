@@ -1,6 +1,7 @@
+import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
 
-export default function FatBurner() {
+export default function FatBurner(): JSX.Element {
   return (
     <Timer
       timer={{

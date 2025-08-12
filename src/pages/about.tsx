@@ -1,7 +1,7 @@
-import { onMount } from 'solid-js';
+import { JSX, onMount } from 'solid-js';
 import './about.scss';
 
-export default function About() {
+export default function About(): JSX.Element {
   onMount(() => {
     const sections = document.querySelectorAll('.about-section');
     const observer = new window.IntersectionObserver(
@@ -19,7 +19,7 @@ export default function About() {
       { threshold: 0.2 }
     );
     sections.forEach(section => observer.observe(section));
-    return () => observer.disconnect();
+    return (): void => observer.disconnect();
   });
 
   return (

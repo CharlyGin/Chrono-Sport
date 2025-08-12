@@ -1,20 +1,22 @@
-import { createSignal, onCleanup } from 'solid-js';
-import './chronometer.scss';
 import { A } from '@solidjs/router';
+import { createSignal, JSX, onCleanup } from 'solid-js';
+import './chronometer.scss';
 
-export default function Clock() {
+export default function Clock(): JSX.Element {
   const [ms, setMs] = createSignal(0);
 
-  let startBtn: HTMLButtonElement | undefined;
-  let stopBtn: HTMLButtonElement | undefined;
-  let resetBtn: HTMLButtonElement | undefined;
+  let startBtn!: HTMLButtonElement;
+  let stopBtn!: HTMLButtonElement;
+  let resetBtn!: HTMLButtonElement;
 
   // Update time every second
   let timer: number | undefined = undefined;
 
   // Cleanup interval when component is unmounted
   onCleanup(() => {
-    if (timer) clearInterval(timer);
+    if (timer) {
+      clearInterval(timer);
+    }
   });
 
   return (
@@ -65,7 +67,9 @@ export default function Clock() {
             stopBtn.disabled = true;
             resetBtn.disabled = true;
 
-            if (timer) clearInterval(timer);
+            if (timer) {
+              clearInterval(timer);
+            }
           }}
           ref={stopBtn}
           disabled
@@ -80,7 +84,9 @@ export default function Clock() {
             resetBtn.disabled = true;
 
             setMs(0);
-            if (timer) clearInterval(timer);
+            if (timer) {
+              clearInterval(timer);
+            }
           }}
           ref={resetBtn}
           disabled

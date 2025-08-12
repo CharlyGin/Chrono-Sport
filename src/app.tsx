@@ -1,6 +1,6 @@
-import { Suspense, type Component } from 'solid-js';
+import { ParentProps, Suspense, type Component } from 'solid-js';
 
-const App: Component = (props: { children: Element }) => {
+const App: Component = (props: ParentProps) => {
   return (
     <>
       <Suspense>{props.children}</Suspense>

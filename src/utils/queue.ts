@@ -13,11 +13,11 @@ export class Queue<T> {
     return this.isEmpty() ? undefined : this.items.shift();
   }
 
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this.items.length === 0;
   }
 
-  public size() {
+  public size(): number {
     return this.items.length;
   }
 }
