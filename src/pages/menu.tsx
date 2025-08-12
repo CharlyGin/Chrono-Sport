@@ -1,15 +1,19 @@
-import './menu.scss';
 import { A } from '@solidjs/router';
-import { For, onMount } from 'solid-js';
+import { For, JSX, onMount } from 'solid-js';
 import { routes } from '../routes';
+import './menu.scss';
 
-export default function Menu() {
-  const workouts = routes
-    .filter(r => r.path.startsWith('/workouts'))
+export default function Menu(): JSX.Element {
+  const workouts: { name: string; label: string }[] = routes
+    .filter(r => typeof r.path === 'string' && r.path.startsWith('/workouts'))
     .map(r => {
+      if (typeof r.path !== 'string') {
+        throw new Error('Invalid route path type');
+      }
+
       const name: string = r.path.split('/').slice(-1)[0];
 
-      const re = new RegExp('(\-*[a-zA-Z]+)+');
+      const re = new RegExp('(-*[a-zA-Z]+)+');
       if (re.exec(name)) {
         return {
           name: name,
@@ -24,16 +28,15 @@ export default function Menu() {
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  let menuRef: HTMLDivElement | undefined = undefined;
+  let menuRef!: HTMLDivElement;
 
   onMount(() => {
-    if (!menuRef) {
-      return;
-    }
-
     let incr: number = 1;
     for (const menu_section of menuRef.querySelectorAll('.menu-section')) {
-      const title: HTMLElement = menu_section.querySelector('.menu-section-title');
+      const title: HTMLElement | null = menu_section.querySelector('.menu-section-title');
+      if (!title) {
+        continue;
+      }
       title.style.animationDelay = `${incr * 0.1}s`;
 
       incr++;

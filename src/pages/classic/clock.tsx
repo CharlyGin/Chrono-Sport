@@ -1,8 +1,8 @@
-import { createSignal, onCleanup } from 'solid-js';
-import './clock.scss';
 import { A } from '@solidjs/router';
+import { createSignal, JSX, onCleanup } from 'solid-js';
+import './clock.scss';
 
-export default function Clock() {
+export default function Clock(): JSX.Element {
   const [time, setTime] = createSignal(new Date());
 
   // Update time every second
@@ -10,8 +10,10 @@ export default function Clock() {
     setTime(new Date());
   }, 1000);
 
-  // Cleanup interval when component is unmounted
-  onCleanup(() => clearInterval(timer));
+  // Cleanup interval whens component is unmounted
+  onCleanup(() => {
+    clearInterval(timer);
+  });
 
   return (
     <div class="clock">

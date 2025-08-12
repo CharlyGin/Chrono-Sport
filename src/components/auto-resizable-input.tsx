@@ -1,5 +1,5 @@
-import { onMount } from 'solid-js';
-import { InputType, OnChangeCallback, Input } from './input';
+import { JSX, onMount } from 'solid-js';
+import { Input, InputType, OnChangeCallback } from './input';
 
 export function AutoResizableInput(props: {
   input_type: InputType;
@@ -9,21 +9,21 @@ export function AutoResizableInput(props: {
   min?: string;
   prefix?: string;
   suffix?: string;
-}) {
-  let inputRef: HTMLInputElement | undefined;
+}): JSX.Element {
+  let inputRef!: HTMLInputElement;
 
   // Update input width based on span width
-  const updateWidth = () => {
+  const updateWidth = (): void => {
     inputRef.style.width = '1ch'; // reset to minimum
     inputRef.style.width = inputRef.scrollWidth + 'px';
   };
 
   onMount(() => {
     updateWidth();
-    inputRef.onkeydown = () => {
+    inputRef.onkeydown = (): void => {
       updateWidth();
     };
-    inputRef.onkeyup = () => {
+    inputRef.onkeyup = (): void => {
       updateWidth();
     };
   });

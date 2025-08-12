@@ -1,8 +1,9 @@
+import { JSX, ParentProps } from 'solid-js';
 import './home.scss';
 
 import { A, useLocation } from '@solidjs/router';
 
-export default function Home(props) {
+export default function Home(props: ParentProps): JSX.Element {
   const location = useLocation();
   return (
     <>

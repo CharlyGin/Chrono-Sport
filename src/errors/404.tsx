@@ -1,7 +1,8 @@
-import './404.scss';
 import { A } from '@solidjs/router';
+import { JSX } from 'solid-js';
+import './404.scss';
 
-export default function NotFound() {
+export default function NotFound(): JSX.Element {
   return (
     <div class="error">
       <div class="error-image">

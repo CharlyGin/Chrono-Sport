@@ -11,8 +11,8 @@ export function Input(props: {
   min?: string;
   prefix?: string;
   suffix?: string;
-  inputRef?: (el: HTMLInputElement) => void | HTMLInputElement;
-}) {
+  inputRef?: (el: HTMLInputElement) => HTMLInputElement;
+}): JSX.Element {
   return (
     <div class="input-wrapper">
       <Show when={props.prefix}>
@@ -27,7 +27,7 @@ export function Input(props: {
             props.onChange(e); // now safe to call
           }
 
-          if (props.input_type == 'number') {
+          if (props.input_type === 'number') {
             const value: number = parseInt(e.target.value);
             if (props.max && value > parseInt(props.max)) {
               e.target.value = props.max;

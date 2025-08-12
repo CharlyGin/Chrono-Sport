@@ -1,6 +1,7 @@
+import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
 
-export default function OneMinute() {
+export default function OneMinute(): JSX.Element {
   return (
     <Timer
       timer={{
