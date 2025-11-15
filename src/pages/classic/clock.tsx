@@ -1,18 +1,32 @@
 import { A } from '@solidjs/router';
-import { createSignal, JSX, onCleanup } from 'solid-js';
+import { createSignal, JSX, onCleanup, onMount } from 'solid-js';
+import {
+  millisecondsToHours,
+  millisecondsToMinutes,
+  millisecondsToSeconds,
+  Timer,
+} from '../../utils/timer';
 import './clock.scss';
 
 export default function Clock(): JSX.Element {
-  const [time, setTime] = createSignal(new Date());
+  const now = new Date();
+  const midnight = new Date();
+  midnight.setHours(0);
+  midnight.setMinutes(0);
+  midnight.setSeconds(0);
+  midnight.setMilliseconds(0);
+  const date = now.getTime() - midnight.getTime();
+  const [ms, setMs] = createSignal(date);
+  const timer: Timer = new Timer(date, 1000, (ms: number) => {
+    setMs(ms);
+  });
 
-  // Update time every second
-  const timer = setInterval(() => {
-    setTime(new Date());
-  }, 1000);
+  onMount(() => {
+    timer.start();
+  });
 
-  // Cleanup interval whens component is unmounted
   onCleanup(() => {
-    clearInterval(timer);
+    timer.stop();
   });
 
   return (
@@ -23,9 +37,9 @@ export default function Clock(): JSX.Element {
         </A>
       </div>
       <div class="time">
-        {time().getHours().toString().padStart(2, '0')}:
-        {time().getMinutes().toString().padStart(2, '0')}:
-        {time().getSeconds().toString().padStart(2, '0')}
+        {millisecondsToHours(ms()).toString().padStart(2, '0')}:
+        {millisecondsToMinutes(ms()).toString().padStart(2, '0')}:
+        {millisecondsToSeconds(ms()).toString().padStart(2, '0')}
       </div>
     </div>
   );

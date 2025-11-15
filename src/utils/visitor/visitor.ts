@@ -1,9 +1,9 @@
-import { ChronoType, RoundType, TimerType } from '../../components/timer.data';
+import { Chrono, Round, Timer } from '../../data/timer.types';
 
 export interface TimerVisitor {
-  visitTimer(t: TimerType): void;
-  visitRound(r: RoundType): void;
-  visitChrono(c: ChronoType): void;
+  visitTimer(t: Timer): void;
+  visitRound(r: Round): void;
+  visitChrono(c: Chrono): void;
 }
 
 export interface Visitable {
