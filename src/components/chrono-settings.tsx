@@ -11,17 +11,16 @@ export function ChronoSettings(props: {
   const chrono_color = props.chrono.color || default_color;
 
   return (
-    <div class="timer-round-chrono">
-      <div class="timer-round-chrono-color">
-        <input
-          type="color"
-          name="chrono-color"
-          value={`#${chrono_color.toString(16).padStart(6, '0')}`}
-          onChange={e => props.update({ color: parseInt(e.target.value.slice(1), 16) })}
-        />
-      </div>
-      <div class="wrapper">
-        <div class="timer-round-chrono-name">
+    <div class="flex flex-row items-center justify-between w-full bg-base-200 rounded-xl bg-transparent">
+      <input
+        type="color"
+        name="chrono-color"
+        class="border-none bg-transparent text-center text-inherit rounded-full w-6 h-6 p-0 cursor-pointer focus:outline-none"
+        value={`#${chrono_color.toString(16).padStart(6, '0')}`}
+        onChange={e => props.update({ color: parseInt(e.target.value.slice(1), 16) })}
+      />
+      <div class="flex flex-row items-center justify-between grow-2 ml-4 mr-4">
+        <div>
           <AutoResizableInput
             input_type="text"
             default={props.chrono.name}
@@ -30,7 +29,7 @@ export function ChronoSettings(props: {
             }}
           />
         </div>
-        <div class="timer-round-chrono-time">
+        <div>
           <AutoResizableInput
             input_type="number"
             default={props.chrono.time.toString()}

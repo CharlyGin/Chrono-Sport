@@ -23,43 +23,41 @@ export default function About(): JSX.Element {
   });
 
   return (
-    <div class="about">
-      <div class="about-section">
-        <div class="about-section-title">Pourquoi cette application ?</div>
-        <div class="about-section-content">
-          <div class="paragraph">
-            <div class="text">
-              Je suis un grand fan de sport à haute intensité. Après la lecture du livre{' '}
-              <a href="https://www.amazon.com/One-Minute-Workout-Science-Smarter-Shorter/dp/0399183663">
-                The One Minute Workout
-              </a>{' '}
-              j'ai eu envie de contribuer à ma manière en créant une application dans laquelle
-              n'importe qui peut créer simplement ses propres entraînements.
-            </div>
-            <div class="image">
-              {' '}
-              <img
-                src="/images/one-minute-workout-cover.jpg"
-                alt="Couverture du livre 'The One Minute Workout'"
-              />
-              <div class="caption">Couverture du livre "The One Minute Workout"</div>
-            </div>
+    <div class="flex flex-col justify-center items-center gap-4 p-8">
+      <div class="bg-base-200 flex flex-col justify-center items-center p-8 w-full sm:w-3/4 rounded-lg shadow-lg">
+        <div class="font-bold text-4xl m-4">Pourquoi cette application ?</div>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-10">
+          <div class="grow-3 text-justify text-2xl p-4">
+            Je suis un grand fan de sport à haute intensité. Après la lecture du livre{' '}
+            <a href="https://www.amazon.com/One-Minute-Workout-Science-Smarter-Shorter/dp/0399183663">
+              The One Minute Workout
+            </a>{' '}
+            j'ai eu envie de contribuer à ma manière en créant une application dans laquelle
+            n'importe qui peut créer simplement ses propres entraînements.
+          </div>
+          <div class="grow-1">
+            {' '}
+            <img
+              src="/images/one-minute-workout-cover.jpg"
+              alt="Couverture du livre 'The One Minute Workout'"
+            />
+            <div class="italic text-center">Couverture du livre "The One Minute Workout"</div>
           </div>
         </div>
       </div>
-      <div class="about-section">
-        <div class="about-section-title">Comment se structure un entraînement ?</div>
+      <div class="bg-base-200 flex flex-col justify-center items-center p-8 w-full sm:w-3/4 rounded-lg shadow-lg">
+        <div class="font-bold text-4xl m-4">Comment se structure un entraînement ?</div>
         <div class="about-section-content">
-          <div class="paragraph">
-            <div class="image">
+          <div class="flex flex-col sm:flex-row justify-center items-center gap-10">
+            <div class="grow-4">
               <img
-                width={500}
+                width={1000}
                 src="/images/theorie.svg"
                 alt="Structure théorique d'un entraînement de cardio"
               />
-              <div class="caption">Structure théorique d'un entraînement de cardio</div>
+              <div class="italic text-center">Structure théorique d'un entraînement de cardio</div>
             </div>
-            <div class="text">
+            <div class="grow-3 text-justify text-2xl p-4">
               <p>
                 Contrairement aux entraînements de musculation classique, on ne va pas réaliser une
                 découpe en M séries de N répétions mais plutôt avoir un nombre de cycles avec une
@@ -73,28 +71,28 @@ export default function About(): JSX.Element {
               </p>
             </div>
           </div>
-          <div class="paragraph">
-            <div class="text">
+          <div class="flex flex-col sm:flex-row justify-center items-center">
+            <div class="grow-3 text-justify text-2xl p-4">
               Si on prend l'exemple d'un entraînement type Tabata, un seul et même round qui se
               répète au minimum 4 fois. Il se compose d'une phase active de 20s et d'une phase de
               repos de 10s.
             </div>
-            <div class="image">
+            <div class="grow-1">
               <img
-                width={300}
+                width={800}
                 src="/images/tabata.svg"
                 alt="Structure d'un entraînement type Tabata"
               />
-              <div class="caption">Structure d'un entraînement type Tabata</div>
+              <div class="italic text-center">Structure d'un entraînement type Tabata</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="about-section">
-        <div class="about-section-title">Vous aimez l'application ?</div>
+      <div class="bg-base-200 flex flex-col justify-center items-center p-8 w-full sm:w-3/5 rounded-lg shadow-lg">
+        <div class="font-bold text-4xl m-4">Vous aimez l'application ?</div>
         <div class="about-section-content">
-          <div class="card">
-            <div class="left-pan">
+          <div class="flex flex-row justify-center items-center">
+            <div class="left-pan grow">
               <ul>
                 <li class="github">
                   <a href="https://github.com/CharlyGin/Chrono-Sport">Sources</a>
@@ -111,8 +109,12 @@ export default function About(): JSX.Element {
                 />
               </a>
             </div>
-            <div class="right-pan">
-              <img src="https://github.com/charlygin.png" alt="Moi :-)" />
+            <div class="right-pan grow basis-0">
+              <img
+                class="rounded-full w-full h-auto hidden sm:block"
+                src="https://github.com/charlygin.png"
+                alt="Moi :-)"
+              />
             </div>
           </div>
         </div>

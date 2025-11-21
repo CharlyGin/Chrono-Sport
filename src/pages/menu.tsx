@@ -1,10 +1,16 @@
-import { A } from '@solidjs/router';
-import { For, JSX, onMount } from 'solid-js';
+import { createSignal, For, JSX, onMount } from 'solid-js';
+import MenuSection from '../components/menu-section';
 import { routes } from '../routes';
-import './menu.scss';
 
 export default function Menu(): JSX.Element {
-  const workouts: { name: string; label: string }[] = routes
+  const [visible, setVisible] = createSignal(false);
+
+  onMount(() => {
+    // trigger the entrance transition
+    requestAnimationFrame(() => setVisible(true));
+  });
+
+  const workouts: { name: string; path: string }[] = routes
     .filter(r => typeof r.path === 'string' && r.path.startsWith('/workouts'))
     .map(r => {
       if (typeof r.path !== 'string') {
@@ -13,77 +19,42 @@ export default function Menu(): JSX.Element {
 
       const name: string = r.path.split('/').slice(-1)[0];
 
-      const re = new RegExp('(-*[a-zA-Z]+)+');
+      const re = new RegExp('(-*[a-zA-Z0-9-]+)+');
       if (re.exec(name)) {
         return {
-          name: name,
-          label: name
+          path: `/workouts/${name}`,
+          name: name
             .split('-')
             .map(p => p[0].toLocaleUpperCase() + p.slice(1))
             .join(' '),
         };
       }
 
-      return { name, label: name };
+      return { name, path: name };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  let menuRef!: HTMLDivElement;
-
-  onMount(() => {
-    let incr: number = 1;
-    for (const menu_section of menuRef.querySelectorAll('.menu-section')) {
-      const title: HTMLElement | null = menu_section.querySelector('.menu-section-title');
-      if (!title) {
-        continue;
-      }
-      title.style.animationDelay = `${incr * 0.1}s`;
-
-      incr++;
-
-      const items = menu_section.querySelectorAll<HTMLElement>(
-        '.menu-section-item-list .menu-section-item'
-      );
-      for (const item of items) {
-        item.style.animationDelay = `${incr * 0.1}s`;
-        incr++;
-      }
-    }
-  });
+  const menus = [
+    {
+      name: 'Classic',
+      items: [
+        { name: 'Clock', path: '/clock' },
+        { name: 'Chrono', path: '/chronometer' },
+      ],
+    },
+    { name: 'Workouts', items: workouts },
+    { name: 'Customs', items: [{ name: 'Blank', path: '/customs/blank' }] },
+  ];
 
   return (
-    <div class="menu" ref={menuRef}>
-      <div class="menu-section">
-        <div class="menu-section-title">classic</div>
-        <div class="menu-section-item-list">
-          <A href="/clock" class="menu-section-item">
-            Clock
-          </A>
-          <A href="/chronometer" class="menu-section-item">
-            Chrono
-          </A>
-        </div>
-      </div>
-      <div class="menu-section">
-        <div class="menu-section-title">workouts</div>
-        <div class="menu-section-item-list">
-          <For each={workouts}>
-            {workout => (
-              <A href={`/workouts/${workout.name}`} class="menu-section-item">
-                {workout.label}
-              </A>
-            )}
-          </For>
-        </div>
-      </div>
-      <div class="menu-section">
-        <div class="menu-section-title">customs</div>
-        <div class="menu-section-item-list">
-          <A href="/customs/blank" class="menu-section-item">
-            Blank
-          </A>
-        </div>
-      </div>
+    <div
+      class={`flex flex-col space-x-4 justify-center items-center m-4 transform transition duration-1000 ease-in-out transition-opacity ${
+        visible() ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+      }`}
+    >
+      <For each={menus}>
+        {menu => <MenuSection title={menu.name} workouts={menu.items}></MenuSection>}
+      </For>
     </div>
   );
 }

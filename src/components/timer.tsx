@@ -15,11 +15,9 @@ export default function Timer(props: { timer: TimerT }): JSX.Element {
 
   return (
     <div class="timer">
-      <div class="timer-header">
-        <A href="/" class="timer-button-back">
-          ←
-        </A>
-      </div>
+      <A href="/" class="m-4 top-0 left-0 fixed button-back">
+        ←
+      </A>
       <TimerDisplay
         execution={execution}
         state={state}
