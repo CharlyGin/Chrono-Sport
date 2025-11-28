@@ -1,5 +1,5 @@
 /* @refresh reload */
-import './index.scss';
+import './style.css';
 
 import { MountableElement, render } from 'solid-js/web';
 
