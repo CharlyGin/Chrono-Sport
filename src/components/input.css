@@ -1,0 +1,14 @@
+input {
+  color: white;
+  background-color: transparent;
+  border: none;
+  text-align: end;
+  font-size: inherit;
+
+  &:focus {
+    outline: none;
+  }
+
+  -webkit-appearance: none;
+  -moz-appearance: textfield; /* Firefox */
+}

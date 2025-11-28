@@ -1,6 +1,5 @@
 import { For, JSX } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import { TransitionGroup } from 'solid-transition-group';
 import { default_color } from '../data/timer.data';
 import { Round } from '../data/timer.types';
 import { AutoResizableInput } from './auto-resizable-input';
@@ -37,8 +36,8 @@ export function RoundSettings(props: {
   };
 
   return (
-    <div class="timer-round">
-      <div class="timer-round-name">
+    <div class="flex flex-col items-center justify-center bg-base-300 rounded-xl w-full p-4">
+      <div class="flex flex-row items-center justify-between timer-round-header w-full">
         <AutoResizableInput
           input_type="text"
           default={props.round.name}
@@ -56,7 +55,7 @@ export function RoundSettings(props: {
           X
         </button>
       </div>
-      <div class="timer-round-pre">
+      <div class="flex flex-row items-center justify-center w-auto gap-4">
         <label for="round-pre">Pre</label>
         <AutoResizableInput
           input_type="number"
@@ -66,24 +65,7 @@ export function RoundSettings(props: {
           max="999999"
           min="0"
         />
-      </div>
-      <div class="timer-round-chronos">
-        <TransitionGroup name="group-item">
-          <For each={chronos}>
-            {(chrono, index) => (
-              <ChronoSettings
-                chrono={chrono}
-                destruct={() => deleteChrono(index)}
-                update={updateChrono(index)}
-              />
-            )}
-          </For>
-        </TransitionGroup>
-        <button class="timer-button-add" onClick={() => addChrono()}>
-          +
-        </button>
-      </div>
-      <div class="timer-round-post">
+
         <label for="round-post">Post</label>
         <AutoResizableInput
           input_type="number"
@@ -94,6 +76,21 @@ export function RoundSettings(props: {
           min="0"
         />
       </div>
+      <div class="flex flex-col items-center w-9/10 gap-1">
+        <For each={chronos}>
+          {(chrono, index) => (
+            <ChronoSettings
+              chrono={chrono}
+              destruct={() => deleteChrono(index)}
+              update={updateChrono(index)}
+            />
+          )}
+        </For>
+      </div>
+      <button class="timer-button-add" onClick={() => addChrono()}>
+        +
+      </button>
+      <div class="flex flex-row items-center justify-between w-full"></div>
     </div>
   );
 }

@@ -38,10 +38,10 @@ export default function TimerSettings(props: {
   };
 
   return (
-    <div class="timer-settings">
-      <div class="timer-name">{timer.name}</div>
-      <div class="timer-details">
-        <div class="timer-begin">
+    <div class="flex flex-col  items-center justify-evenly w-screen h-screen">
+      <div class="text-4xl flex items-center justify-center font-bold grow-1 m-2">{timer.name}</div>
+      <div class="flex flex-col items-center justify-center w-9/10 md:w-1/2 gap-4 grow-8 text-2xl">
+        <div class="flex flex-row items-center justify-between w-full bg-base-200 rounded-xl p-4">
           <label for="begin">Begin</label>
           <AutoResizableInput
             input_type="number"
@@ -52,7 +52,7 @@ export default function TimerSettings(props: {
             min="0"
           />
         </div>
-        <div class="timer-rounds">
+        <div class="flex flex-col gap-4 w-full">
           <For each={timer.rounds}>
             {(round, index) => (
               <RoundSettings
@@ -67,7 +67,7 @@ export default function TimerSettings(props: {
         <button class="timer-button-add" onClick={addRound}>
           +
         </button>
-        <div class="timer-end">
+        <div class="flex flex-row items-center justify-between w-full bg-base-200 rounded-xl p-4">
           <label for="end">End</label>
           <AutoResizableInput
             input_type="number"
