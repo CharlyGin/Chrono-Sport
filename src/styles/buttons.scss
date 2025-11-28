@@ -19,19 +19,19 @@
   }
 
   &:disabled {
-    background-color: rgb(116, 116, 116);
-    border-color: rgb(116, 116, 116);
+    background-color: var(--color-base-300);
+    border-color: white;
   }
 }
 
 .round-button-green {
-  @include round-button(rgb(50, 207, 50), rgb(37, 154, 37));
+  @include round-button(var(--color-success), var(--color-success-content));
 }
 
 .round-button-red {
-  @include round-button(rgb(255, 87, 87), rgb(204, 68, 68));
+  @include round-button(var(--color-error), var(--color-error-content));
 }
 
 .round-button-yellow {
-  @include round-button(rgb(227, 227, 46), rgb(182, 182, 38));
+  @include round-button(var(--color-warning), var(--color-warning-content));
 }

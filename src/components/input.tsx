@@ -1,4 +1,5 @@
 import { JSX, Show } from 'solid-js';
+import './input.css';
 
 export type OnChangeCallback = JSX.ChangeEventHandlerUnion<HTMLInputElement, Event>;
 export type InputType = 'number' | 'text';
@@ -16,9 +17,10 @@ export function Input(props: {
   return (
     <div class="input-wrapper">
       <Show when={props.prefix}>
-        <span class="prefix">{props.prefix}</span>
+        <span>{props.prefix}</span>
       </Show>
       <input
+        class="m-2"
         ref={props.inputRef}
         type={props.input_type}
         value={props.default}
@@ -41,7 +43,7 @@ export function Input(props: {
         min={props.min}
       />
       <Show when={props.suffix}>
-        <span class="suffix">{props.suffix}</span>
+        <span>{props.suffix}</span>
       </Show>
     </div>
   );

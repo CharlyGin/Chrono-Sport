@@ -25,18 +25,18 @@ export default function TimerDisplay(props: {
 
   return (
     <div
-      class="timer-display"
+      class="flex flex-col items-center justify-evenly w-screen h-screen"
       style={{
         'background-color': exec().background,
       }}
     >
-      <div class="timer-display-info">
-        <div class="timer-display-info-round">
+      <div class="flex flex-col items-center justify-center text-6xl h-1/3">
+        <div>
           {exec().round} {exec().position}
         </div>
-        <div class="timer-display-info-chrono">{exec().chrono}</div>
+        <div>{exec().chrono}</div>
       </div>
-      <div class="timer-display-time">
+      <div class="flex flex-col items-center justify-center text-[15vw] h-1/3 font-bold">
         {Math.floor((ms() / (1000 * 60 * 60)) % 60)
           .toString()
           .padStart(2, '0')}
