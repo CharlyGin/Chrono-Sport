@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function OneByFour(): JSX.Element {
   return (
@@ -10,7 +11,7 @@ export default function OneByFour(): JSX.Element {
         rounds: [
           {
             name: 'Round',
-            chronos: [{ name: 'Active', time: 240, color: 0xff0000 }], // 4 minutes
+            chronos: [{ name: 'Active', time: 240, color: Colors.Red }], // 4 minutes
             repeat: 1,
           },
         ],

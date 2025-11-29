@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function FatBurner(): JSX.Element {
   return (
@@ -11,8 +12,8 @@ export default function FatBurner(): JSX.Element {
           {
             name: 'Round',
             chronos: [
-              { name: 'Extreme', time: 8, color: 0xff0000 },
-              { name: 'Low', time: 12, color: 0xffe400 },
+              { name: 'Extreme', time: 8, color: Colors.Red },
+              { name: 'Low', time: 12, color: Colors.Yellow },
             ],
             repeat: 60,
           },
