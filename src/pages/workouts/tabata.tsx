@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function Tabata(): JSX.Element {
   return (
@@ -11,11 +12,11 @@ export default function Tabata(): JSX.Element {
           {
             name: 'Round',
             chronos: [
-              { name: 'Active', time: 20, color: 0xff0000 },
+              { name: 'Active', time: 20, color: Colors.Red },
               {
                 name: 'Rest',
                 time: 10,
-                color: 0x00ff00,
+                color: Colors.Green,
               },
             ],
             repeat: 8,

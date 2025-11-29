@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function TenByOne(): JSX.Element {
   return (
@@ -11,8 +12,8 @@ export default function TenByOne(): JSX.Element {
           {
             name: 'Warm up',
             chronos: [
-              { name: 'Cool', time: 60, color: 0x00ff00 },
-              { name: 'Hard !', time: 60, color: 0xff0000 },
+              { name: 'Cool', time: 60, color: Colors.Green },
+              { name: 'Hard !', time: 60, color: Colors.Red },
             ],
             repeat: 10,
           },

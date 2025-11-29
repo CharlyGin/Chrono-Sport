@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function TenTwentyThirty(): JSX.Element {
   return (
@@ -11,10 +12,10 @@ export default function TenTwentyThirty(): JSX.Element {
           {
             name: 'Round',
             chronos: [
-              { name: 'Medium', time: 30, color: 0xffe400 },
-              { name: 'Hard', time: 20, color: 0xff5d00 },
-              { name: 'Extreme', time: 10, color: 0xff0000 },
-              { name: 'Light', time: 120, color: 0x00ff00 },
+              { name: 'Medium', time: 30, color: Colors.Yellow },
+              { name: 'Hard', time: 20, color: Colors.Orange },
+              { name: 'Extreme', time: 10, color: Colors.Red },
+              { name: 'Light', time: 120, color: Colors.Green },
             ],
             repeat: 4,
           },

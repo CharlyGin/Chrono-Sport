@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function OneMinute(): JSX.Element {
   return (
@@ -11,11 +12,11 @@ export default function OneMinute(): JSX.Element {
           {
             name: 'Round',
             chronos: [
-              { name: 'Active', time: 20, color: 0xff0000 },
+              { name: 'Active', time: 20, color: Colors.Red }, // 20 seconds
               {
                 name: 'Rest',
                 time: 120, // 2 minutes
-                color: 0x00ff00,
+                color: Colors.Green,
               },
             ],
             repeat: 3,

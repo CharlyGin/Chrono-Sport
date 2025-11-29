@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function WingateClassic(): JSX.Element {
   return (
@@ -11,8 +12,8 @@ export default function WingateClassic(): JSX.Element {
           {
             name: 'Round',
             chronos: [
-              { name: 'Hard', time: 30, color: 0xff0000 },
-              { name: 'Low', time: 270, color: 0xffe400 },
+              { name: 'Hard', time: 30, color: Colors.Red },
+              { name: 'Low', time: 270, color: Colors.Yellow },
             ],
             repeat: 5,
           },
