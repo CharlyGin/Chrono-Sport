@@ -11,7 +11,7 @@ export default function NotFound(): JSX.Element {
       </div>
       <div class="error-message">
         <div>Not Found</div>
-        <A href="/" class="button">
+        <A href="/" class="btn btn-outline btn-xl w-full sm:w-fit">
           Go Home
         </A>
       </div>

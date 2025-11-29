@@ -1,5 +1,6 @@
 import { JSX } from 'solid-js';
 import Timer from '../../components/timer';
+import { Colors } from '../../data/color.data';
 
 export default function Norwegian(): JSX.Element {
   return (
@@ -11,8 +12,8 @@ export default function Norwegian(): JSX.Element {
           {
             name: 'Round',
             chronos: [
-              { name: 'Hard', time: 240, color: 0xff0000 },
-              { name: 'Low', time: 180, color: 0x00ff00 },
+              { name: 'Hard', time: 240, color: Colors.Red },
+              { name: 'Low', time: 180, color: Colors.Green },
             ],
             repeat: 4,
           },

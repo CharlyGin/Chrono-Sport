@@ -1,4 +1,4 @@
-export type TimerState = 'ready' | 'running' | 'pause';
+export type TimerState = 'ready' | 'running' | 'pause' | 'finished';
 
 export type Chrono = {
   name: string;

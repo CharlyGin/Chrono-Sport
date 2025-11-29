@@ -35,6 +35,10 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+  --color-yellow: #ede845;
+  --color-orange: #f29c2c;
+  --color-green: #34ec86ff;
+  --color-red: #f7624fff;
 }
 
 @layer base {

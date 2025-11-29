@@ -1,21 +1,25 @@
 export class Timer {
   private interval: number | undefined;
   private ms: number = 0;
+  private last_timestamp: number = 0;
 
   constructor(
     initial_value: number = 0,
-    public precision: number = 10,
-    private callback: (ms: number) => void = () => {}
+    public refresh_rate: number = 10,
+    private callback: (elapse: number) => void = () => {}
   ) {
     this.ms = initial_value;
   }
 
   start(): void {
+    this.last_timestamp = performance.now();
     if (!this.interval) {
       this.interval = setInterval(() => {
-        this.ms += this.precision;
+        const now = performance.now();
+        this.ms += now - this.last_timestamp;
+        this.last_timestamp = now;
         this.callback?.(this.ms);
-      }, this.precision);
+      }, this.refresh_rate);
     }
   }
 

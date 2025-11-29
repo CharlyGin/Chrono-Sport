@@ -1,4 +1,4 @@
-@import '../../styles/buttons.scss';
+@use '../../styles/buttons.scss';
 
 .chronometer {
   display: flex;
@@ -22,7 +22,7 @@
   }
 
   &-button-back {
-    @include round-button('transparent', rgb(98, 98, 98));
+    @include buttons.round-button('transparent', rgb(98, 98, 98));
     text-decoration: none;
     font-size: 3rem;
     display: flex;
