@@ -18,6 +18,7 @@ export function useTimerExecution(timer: TimerT): {
 
   let interval: number | undefined;
   let queue: Queue<Execution> | undefined;
+  let lastTimestamp: number = 0;
 
   const start = (): void => {
     if (state() === 'ready') {
@@ -26,24 +27,29 @@ export function useTimerExecution(timer: TimerT): {
       queue = visitor.execution_queue;
     }
 
-    interval = setInterval(() => {
-      const current = execution();
-      if (!current && queue) {
-        setExecution(queue.dequeue());
-      }
-
-      if (current && current.time === ms() / 1000) {
-        if (queue && !queue.isEmpty()) {
+    if (['ready', 'pause'].includes(state())) {
+      lastTimestamp = performance.now();
+      interval = setInterval(() => {
+        const timestamp = performance.now();
+        const current = execution();
+        if (!current && queue) {
           setExecution(queue.dequeue());
-        } else {
-          stop();
         }
-        setMs(0);
-        return;
-      }
 
-      setMs(p => p + 10);
-    }, 10);
+        if (current && current.time <= ms() / 1000) {
+          if (queue && !queue.isEmpty()) {
+            setExecution(queue.dequeue());
+          } else {
+            stop();
+          }
+          setMs(0);
+          return;
+        }
+
+        setMs(p => p + timestamp - lastTimestamp);
+        lastTimestamp = timestamp;
+      }, 10);
+    }
 
     setState('running');
   };
